@@ -2,6 +2,7 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
+var newReservation = [];
 
 // Sets up the Express App
 // =============================================================
@@ -11,15 +12,6 @@ var PORT = process.env.PORT || 3000;
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-var customer = [
-  {
-    name: "reserve_name",
-    phone_number: "reserve_phone",
-    email: "reserve_email",
-    unique_ID: "reserve_id"
-  }
-];
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "home.html"));
@@ -33,28 +25,13 @@ app.get("/reserve", function(req, res) {
 
 // Displays all characters
 app.get("/api/tables", function(req, res) {
-  return res.json(customer);
+  return res.json(newReservation);
 });
 app.get("/api/waitlist", function(req, res) {
-  return res.json(customer);
+  return res.json(newReservation);
 });
 
-// Displays a single reservation, or returns false
-app.get("/api/table/:customer", function(req, res) {
-  var reserve = req.params.customer;
-
-  console.log(reserve);
-
-  for (var i = 0; i < customer.length; i++) {
-    if (reserve === customer[i].routeName) {
-      return res.json(customer[i]);
-    }
-  }
-
-  return res.json(false);
-});
-
-app.post("/api/table", function(req, res) {
+app.post("/api/tables", function(req, res) {
   var newReservation = req.body;
 
   console.log(newReservation);
