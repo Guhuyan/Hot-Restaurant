@@ -18,8 +18,11 @@ app.use(express.json());
     phone_num = ,
     email =
 }
-];*/
-app.get("/", function(req, res) {
-  res.json(path.join(__dirname, "/index.html"));
+];
+app.get("/home.html", function(req, res) {
+  res.json(path.join(__dirname, "/home.html"));
   console.log("Connected!");
+});*/
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
 });
