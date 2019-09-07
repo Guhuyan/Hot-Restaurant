@@ -82,10 +82,10 @@
             $(".submit").on("click", function () {
 
                 var newReservation = {
-                    customerName: $('#reserve_name').val().trim(),
-                    phoneNumber: $('#reserve_phone').val().trim(),
-                    customerEmail: $('#reserve_email').val().trim(),
-                    customerID: $('#reserve_uniqueID').val().trim()
+                    name: $("#reserve_name").val().trim(),
+                    reserve_phone: $("#reserve_phone").val().trim(),
+                    reserve_email: $("#reserve_email").val().trim(),
+                    reserve_id: $("#reserve_id").val().trim()
                 };
 
                 console.log(newReservation);
@@ -96,11 +96,11 @@
                     function (data) {
 
                         if (data == true) {
-                            alert("Yay! You are officially booked!")
+                            alert("Your reservation has been booked.")
                         }
 
                         if (data == false) {
-                            alert("Sorry you are on the wait list")
+                            alert("Sorry, our tables have full.  You've been placed on the wait list.")
                         }
 
                         $('#reserve_name').val("");
