@@ -24,6 +24,24 @@ app.get("/home.html", function(req, res) {
   console.log("Connected!");
 });*/
 
+// Displays a single reservation, or returns false
+app.get("/api/make/:customer", function(req, res) {
+  var reserve = req.params.customer;
+
+  console.log(reserve);
+
+  for (var i = 0; i < customer.length; i++) {
+    if (reserve === customer[i].routeName) {
+      return res.json(customer[i]);
+    }
+  }
+
+  return res.json(false);
+});
+
+// Starts the server to begin listening
+// =============================================================
+=======
 app.post("/api/make", function (req, res) {
 
   var newReservation = req.body;
@@ -32,6 +50,7 @@ app.post("/api/make", function (req, res) {
 
   res.json(newReservation);
 });
+
 
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
