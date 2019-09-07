@@ -23,6 +23,16 @@ app.get("/home.html", function(req, res) {
   res.json(path.join(__dirname, "/home.html"));
   console.log("Connected!");
 });*/
+
+app.post("/api/make", function (req, res) {
+
+  var newReservation = req.body;
+
+  console.log(newReservation);
+
+  res.json(newReservation);
+});
+
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
