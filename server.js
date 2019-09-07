@@ -12,19 +12,32 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-/*var customer = [
-{
-    customer_name = document.getElementById("customer_name").value,
-    phone_num = document.getElementById("phone_num").value,
-    email = document.getElementById("email").value
-}
+var customer = [
+  {
+    name: "reserve_name",
+    phone_number: "reserve_phone",
+    email: "reserve_email",
+    unique_ID: "reserve_id"
+  }
 ];
-app.get("/home.html", function(req, res) {
-  res.json(path.join(__dirname, "/home.html"));
-});*/
+
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "home.html"));
+});
+app.get("/tables", function(req, res) {
+  res.sendFile(path.join(__dirname, "view.html"));
+});
+app.get("/reserve", function(req, res) {
+  res.sendFile(path.join(__dirname, "make.html"));
+});
+
+// Displays all characters
+app.get("/api/tables", function(req, res) {
+  return res.json(customer);
+});
 
 // Displays a single reservation, or returns false
-app.get("/api/make/:customer", function(req, res) {
+app.get("/api/table/:customer", function(req, res) {
   var reserve = req.params.customer;
 
   console.log(reserve);
