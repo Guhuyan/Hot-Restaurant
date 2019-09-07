@@ -35,6 +35,9 @@ app.get("/reserve", function(req, res) {
 app.get("/api/tables", function(req, res) {
   return res.json(customer);
 });
+app.get("/api/waitlist", function(req, res) {
+  return res.json(customer);
+});
 
 // Displays a single reservation, or returns false
 app.get("/api/table/:customer", function(req, res) {
