@@ -41,6 +41,17 @@ app.get("/api/make/:customer", function(req, res) {
 
 // Starts the server to begin listening
 // =============================================================
+=======
+app.post("/api/make", function (req, res) {
+
+  var newReservation = req.body;
+
+  console.log(newReservation);
+
+  res.json(newReservation);
+});
+
+
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
