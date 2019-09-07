@@ -23,6 +23,9 @@ app.get("/home.html", function(req, res) {
   res.json(path.join(__dirname, "/home.html"));
   console.log("Connected!");
 });*/
+
+// Starts the server to begin listening
+// =============================================================
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
