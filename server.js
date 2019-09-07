@@ -14,14 +14,13 @@ app.use(express.json());
 
 /*var customer = [
 {
-    customer_name = ,
-    phone_num = ,
-    email =
+    customer_name = document.getElementById("customer_name").value,
+    phone_num = document.getElementById("phone_num").value,
+    email = document.getElementById("email").value
 }
 ];
 app.get("/home.html", function(req, res) {
   res.json(path.join(__dirname, "/home.html"));
-  console.log("Connected!");
 });*/
 
 // Displays a single reservation, or returns false
@@ -39,11 +38,7 @@ app.get("/api/make/:customer", function(req, res) {
   return res.json(false);
 });
 
-// Starts the server to begin listening
-// =============================================================
-=======
-app.post("/api/make", function (req, res) {
-
+app.post("/api/table", function(req, res) {
   var newReservation = req.body;
 
   console.log(newReservation);
@@ -51,7 +46,8 @@ app.post("/api/make", function (req, res) {
   res.json(newReservation);
 });
 
-
+// Starts the server to begin listening
+// =============================================================
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
