@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- jQuery -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -43,9 +43,7 @@
                         <h4 class="panel-title">Current Tables</h4>
                     </div>
                     <div id="tableSection" class="panel-body">
-                        <div id="tablewell-00" class="well">
-                            <h2><span class="label label-primary">0</span>Reserved VIP</h2>
-                        </div>
+
                     </div>
                 </div>
                 <!-- Waiting List -->
@@ -61,7 +59,9 @@
         </div>
         <div class="footer">
             <div class="container">
+                <p>Control Panel</p>
                 <p>
+                    <a href="#" id="clear">Clear Table</a>
                     <a href="/api/tables">API Table Link</a>
 
                     <a href="/api/waitlist">API Wait List</a>
@@ -69,6 +69,36 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            // When the user clicks on the clear link, it's going to clear out both tables
+            $("#clear").on("click", function () {
+                $("#tableSection").empty();
+                $("#waitlistSection").empty();
+                num = 0;
+            });
+
+            var num = 0;
+
+            function runTableQuery() {
+                var currentURL = window.location.origin;
+                $.ajax({
+                    url: currentURL + "/api/tables",
+                    method: "GET"
+                }).done(function (data) {
+                    console.log(`${currentURL}/api/tables`);
+                    console.log(data);
+                    for (i = 0; i < data.length; i++) {
+                        $("#tableSection").append(`
+                        <div id="tablewell-00" class="well">
+                            <h2><span class="label label-primary">${data.id}</span>${data.name}</h2>
+                        </div>
+                        `)
+                    }
+                })
+            }
+        });
+    </script>
 </body>
 
 </html>
